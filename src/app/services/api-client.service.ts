@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BrandingResponse} from "../types/branding.response";
 import {TemperatureResponse} from "../types/temperature.response";
+import {MenuResponse} from "../types/menu.response";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) {
     this.baseUrl = 'http://localhost:5000';
+  }
+
+  getMenu() {
+    return this.get<MenuResponse>('food/menu');
   }
 
   getLatestTemperature() {

@@ -8,7 +8,8 @@ module.exports = {
       backdrop: '#0F0F0F',
       primary: '#ffffff',
       container: '#141414',
-      divider: '#5C5C5C'
+      divider: '#5C5C5C',
+      innerContainer: '#191919',
     },
     extend: {},
   },
