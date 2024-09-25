@@ -1,23 +1,16 @@
-<div class="bg-container h-full rounded-lg p-4">
-  <span class="flex gap-1 items-center">
-    <fa-icon [icon]="faCutlery"></fa-icon>
-    <p class="text-2xl">Mat</p>
-  </span>
-  <app-divider></app-divider>
-  <div class="flex flex-col gap-4">
-    <div class="flex flex-col gap-1">
-      <p>Idag</p>
-      <div *ngFor="let day of menuToday?.meals" class="bg-innerContainer p-2 rounded">
-        <span>{{ day }}</span>
-      </div>
-
+<app-pane [icon]="faCutlery" name="Mat">
+  <div class="flex flex-col gap-1">
+    <p>Idag</p>
+    <div *ngFor="let day of menuToday?.meals" class="bg-innerContainer p-2 rounded">
+      <span>{{ day }}</span>
     </div>
 
-    <div class="flex flex-col gap-1">
-      <p>Imorgon</p>
-      <div *ngFor="let day of menuTomorrow?.meals" class="bg-innerContainer p-2 rounded">
-        <span>{{ day }}</span>
-      </div>
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <p>Imorgon</p>
+    <div *ngFor="let day of menuTomorrow?.meals" class="bg-innerContainer p-2 rounded">
+      <span>{{ day }}</span>
     </div>
   </div>
-</div>
+</app-pane>

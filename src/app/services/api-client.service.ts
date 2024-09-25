@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BrandingResponse} from "../types/branding.response";
 import {TemperatureResponse} from "../types/temperature.response";
-import {MenuResponse} from "../types/menu.response";
+import {MenuResponse} from "../types/food/menu.response";
+import {ClassroomAnnouncementResponse} from "../types/classroom-announcement.response";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class ApiClientService {
 
   getMenu() {
     return this.get<MenuResponse>('food/menu');
+  }
+
+  getLatestClassroomAnnouncement() {
+    return this.get<ClassroomAnnouncementResponse>('classroom/latestAnnouncement');
   }
 
   getLatestTemperature() {

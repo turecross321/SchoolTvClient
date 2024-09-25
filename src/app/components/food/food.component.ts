@@ -1,10 +1,13 @@
 import {Component} from '@angular/core';
 import {DividerComponent} from "../divider/divider.component";
-import {FoodService} from "../../services/food.service";
 import {NgForOf} from "@angular/common";
-import {MenuDayResponse} from "../../types/menu-day.response";
+import {MenuDayResponse} from "../../types/food/menu-day.response";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faCutlery} from '@fortawesome/free-solid-svg-icons';
+import {PaneComponent} from "../pane/pane.component";
+import {ApiClientService} from "../../services/api-client.service";
+import {interval, switchMap} from "rxjs";
+import {MenuResponse} from "../../types/food/menu.response";
 
 @Component({
   selector: 'app-food',
@@ -12,7 +15,8 @@ import {faCutlery} from '@fortawesome/free-solid-svg-icons';
   imports: [
     DividerComponent,
     NgForOf,
-    FaIconComponent
+    FaIconComponent,
+    PaneComponent
   ],
   templateUrl: './food.component.html',
 })
@@ -21,23 +25,36 @@ export class FoodComponent {
   menuTomorrow: MenuDayResponse | null = null;
   protected readonly faCutlery = faCutlery;
 
-  constructor(public foodService: FoodService) {
-    foodService.menu$.subscribe((menu) => {
-      if (!menu) {
-        return;
-      }
+  constructor(public api: ApiClientService) {
+    interval(1000 * 60 * 60 * 24) // 24 hours
+      .pipe(
+        switchMap(() => this.api.getMenu())
+      )
+      .subscribe(menu => {
+        this.setMenus(menu);
+      });
 
-      let now = new Date();
-      let day = (now.getDay() + 6) % 7; // adjust so that monday represents 0
+    // Initial fetch when the service starts
+    this.api.getMenu().subscribe(menu => {
+      this.setMenus(menu);
+    });
+  }
 
-      this.menuToday = menu!.weeks[0].days[day];
+  setMenus(response: MenuResponse | null) {
+    if (!response) {
+      return;
+    }
 
-      if (day >= 4) // if its friday or later today, then next today should be next week on monday
-      {
-        this.menuTomorrow = menu!.weeks[1].days[0];
-      } else {
-        this.menuTomorrow = menu!.weeks[0].days[day + 1];
-      }
-    })
+    let now = new Date();
+    let day = (now.getDay() + 6) % 7; // adjust so that monday represents 0
+
+    this.menuToday = response.weeks[0].days[day];
+
+    if (day >= 4) // if its friday or later today, then next today should be next week on monday
+    {
+      this.menuTomorrow = response.weeks[1].days[0];
+    } else {
+      this.menuTomorrow = response.weeks[0].days[day + 1];
+    }
   }
 }

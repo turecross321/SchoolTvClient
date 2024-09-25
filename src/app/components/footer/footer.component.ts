@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faTemperature0} from "@fortawesome/free-solid-svg-icons";
-import {TemperatureService} from "../../services/temperature.service";
+import {interval, switchMap} from "rxjs";
+import {ApiClientService} from "../../services/api-client.service";
 
 @Component({
   selector: 'app-footer',
@@ -18,13 +19,22 @@ export class FooterComponent {
   weatherIcon = faTemperature0;
   temperature: number = 0;
 
-  constructor(public temp: TemperatureService) {
+  constructor(private api: ApiClientService) {
     setInterval(() => {
       this.time = new Date();
     }, 1000);
 
-    temp.temperature$.subscribe((temperature) => {
-      this.temperature = temperature ?? 0;
+    interval(60000)
+      .pipe(
+        switchMap(() => this.api.getLatestTemperature())
+      )
+      .subscribe(temp => {
+        this.temperature = temp.celsius;
+      });
+
+    // Initial fetch when the service starts
+    this.api.getLatestTemperature().subscribe(temp => {
+      this.temperature = temp.celsius;
     });
   }
 }
