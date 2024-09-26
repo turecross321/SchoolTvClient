@@ -23,6 +23,7 @@ import {MenuResponse} from "../../types/food/menu.response";
 export class FoodComponent {
   menuToday: MenuDayResponse | null = null;
   menuTomorrow: MenuDayResponse | null = null;
+  nextDayText: string = ""
   protected readonly faCutlery = faCutlery;
 
   constructor(public api: ApiClientService) {
@@ -53,8 +54,10 @@ export class FoodComponent {
     if (day >= 4) // if its friday or later today, then next today should be next week on monday
     {
       this.menuTomorrow = response.weeks[1].days[0];
+      this.nextDayText = "Nästa vecka";
     } else {
       this.menuTomorrow = response.weeks[0].days[day + 1];
+      this.nextDayText = "Imorgon";
     }
   }
 }

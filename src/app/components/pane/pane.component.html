@@ -1,12 +1,12 @@
-<div class="bg-container h-full rounded-lg p-4">
-  <div class="flex flex-col">
+<div class="bg-container h-full rounded-lg p-4 flex flex-col">
+  <div class="flex flex-col h-[50px]">
     <span class="flex gap-2 items-center">
       <fa-icon [icon]="icon"></fa-icon>
       <p class="text-2xl">{{ name }}</p>
     </span>
     <app-divider></app-divider>
   </div>
-  <div class="flex flex-col gap-4 flex-grow w-full">
+  <div class="flex flex-col gap-4 h-full w-full overflow-y-auto scroll-smooth">
     <ng-content></ng-content>
   </div>
 </div>

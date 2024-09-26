@@ -1,105 +1,18 @@
 <app-pane [icon]="faBullhorn" name="Classroom">
-  <div class="bg-innerContainer rounded-lg w-full h-full">
-    <span>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
-      Yo man<br>
+  @if (announcement) {
+    <div class="bg-innerContainer rounded-lg w-full p-2 flex flex-col gap-2">
+      <div class="flex gap-2 items-center">
+        <img [ngSrc]="announcement.userPhotoUrl" alt="Profilbild" width="40" height="40" class="rounded">
+        <div>
+          <p>{{ announcement.userName }}</p>
+          <p class="text-xs text-gentle">{{ date() | date: "yyyy-MM-dd" }}</p>
+        </div>
 
-    </span>
-  </div>
+      </div>
+      <div class="bg-container p-2 rounded-lg h-full">
+        <p>{{ announcement.text }}</p>
+      </div>
+    </div>
+  }
 </app-pane>
+

@@ -10,6 +10,7 @@ module.exports = {
       container: '#141414',
       divider: '#5C5C5C',
       innerContainer: '#191919',
+      gentle: '#aeaeae'
     },
     extend: {},
   },
