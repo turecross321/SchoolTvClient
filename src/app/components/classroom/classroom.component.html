@@ -1,11 +1,11 @@
 <app-pane [icon]="faBullhorn" name="Classroom">
-  @if (announcement) {
+  @if (announcement != null) {
     <div class="bg-innerContainer rounded-lg w-full p-2 flex flex-col gap-2">
       <div class="flex gap-2 items-center">
         <img [ngSrc]="announcement.userPhotoUrl" alt="Profilbild" width="40" height="40" class="rounded">
         <div>
           <p>{{ announcement.userName }}</p>
-          <p class="text-xs text-gentle">{{ date() | date: "yyyy-MM-dd" }}</p>
+          <app-date [date]="this.announcement!.creationDate"></app-date>
         </div>
 
       </div>

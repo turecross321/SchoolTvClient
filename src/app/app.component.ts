@@ -10,7 +10,7 @@ import {ClassroomComponent} from "./components/classroom/classroom.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgOptimizedImage, HeaderComponent, FooterComponent, DividerComponent, FoodComponent, ClassroomComponent],
+  imports: [RouterOutlet, NgOptimizedImage, HeaderComponent, FooterComponent, DividerComponent, FoodComponent, ClassroomComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

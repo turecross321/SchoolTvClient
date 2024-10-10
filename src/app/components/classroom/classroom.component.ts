@@ -4,6 +4,7 @@ import {faBullhorn} from "@fortawesome/free-solid-svg-icons";
 import {ApiClientService} from "../../services/api-client.service";
 import {ClassroomAnnouncementResponse} from "../../types/classroom-announcement.response";
 import {DatePipe, NgOptimizedImage} from "@angular/common";
+import {DateComponent} from "../date/date.component";
 
 @Component({
   selector: 'app-classroom',
@@ -11,7 +12,8 @@ import {DatePipe, NgOptimizedImage} from "@angular/common";
   imports: [
     PaneComponent,
     NgOptimizedImage,
-    DatePipe
+    DatePipe,
+    DateComponent
   ],
   templateUrl: './classroom.component.html',
 })
@@ -24,12 +26,5 @@ export class ClassroomComponent {
     this.apiClient.getLatestClassroomAnnouncement().subscribe((announcement) => {
       this.announcement = announcement;
     })
-  }
-
-  date(): Date | null {
-    if (!this.announcement)
-      return null;
-    
-    return new Date(this.announcement.creationDate);
   }
 }

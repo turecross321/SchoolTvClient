@@ -24,7 +24,7 @@ export class FooterComponent {
       this.time = new Date();
     }, 1000);
 
-    interval(60000)
+    interval(60 * 1000) // every minute
       .pipe(
         switchMap(() => this.api.getLatestTemperature())
       )
