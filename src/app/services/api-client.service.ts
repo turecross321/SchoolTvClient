@@ -1,9 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {BrandingResponse} from "../types/branding.response";
+import {ConfigurationResponse} from "../types/configuration.response";
 import {TemperatureResponse} from "../types/temperature.response";
 import {MenuResponse} from "../types/food/menu.response";
 import {ClassroomAnnouncementResponse} from "../types/classroom-announcement.response";
+import {VasttrafikStopAreaResponse} from "../types/vasttrafik/vasttrafik-stop-area.response";
+import {SchoolBreaksResponse} from "../types/breaks/school-breaks.response";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,14 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) {
     this.baseUrl = 'http://localhost:5000';
+  }
+
+  getBreaks() {
+    return this.get<SchoolBreaksResponse>('schoolBreaks');
+  }
+
+  getVasttrafikDepartures() {
+    return this.get<VasttrafikStopAreaResponse[]>("vasttrafik/departures");
   }
 
   getMenu() {
@@ -28,8 +38,8 @@ export class ApiClientService {
     return this.get<TemperatureResponse>('temperature/latest');
   }
 
-  getBrand() {
-    return this.get<BrandingResponse>('branding');
+  getConfiguration() {
+    return this.get<ConfigurationResponse>('configuration');
   }
 
   get<TResponse>(path: string) {

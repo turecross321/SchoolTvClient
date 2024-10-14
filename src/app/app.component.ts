@@ -2,15 +2,17 @@ import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {NgOptimizedImage} from "@angular/common";
 import {HeaderComponent} from "./components/header/header.component";
-import {FooterComponent} from "./components/footer/footer.component";
 import {DividerComponent} from "./components/divider/divider.component";
-import {FoodComponent} from "./components/food/food.component";
-import {ClassroomComponent} from "./components/classroom/classroom.component";
+import {FoodPaneComponent} from "./components/food-pane/food-pane.component";
+import {ClassroomPaneComponent} from "./components/classroom-pane/classroom-pane.component";
+import {VasttrafikPaneComponent} from "./components/vasttrafik-pane/vasttrafik-pane.component";
+import {GraduationMoneyPaneComponent} from "./components/graduation-money-pane/graduation-money-pane.component";
+import {BreaksPane} from "./components/breaks-pane/breaks-pane.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgOptimizedImage, HeaderComponent, FooterComponent, DividerComponent, FoodComponent, ClassroomComponent,],
+  imports: [RouterOutlet, NgOptimizedImage, HeaderComponent, DividerComponent, FoodPaneComponent, ClassroomPaneComponent, VasttrafikPaneComponent, GraduationMoneyPaneComponent, BreaksPane],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

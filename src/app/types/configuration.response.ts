@@ -1,4 +1,4 @@
-﻿export interface BrandingResponse {
+﻿export interface ConfigurationResponse {
   brandName: string;
   logoUrl: string;
   logoAltText: string;

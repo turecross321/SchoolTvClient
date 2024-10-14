@@ -7,7 +7,7 @@ import {DatePipe, NgOptimizedImage} from "@angular/common";
 import {DateComponent} from "../date/date.component";
 
 @Component({
-  selector: 'app-classroom',
+  selector: 'app-classroom-pane',
   standalone: true,
   imports: [
     PaneComponent,
@@ -15,9 +15,9 @@ import {DateComponent} from "../date/date.component";
     DatePipe,
     DateComponent
   ],
-  templateUrl: './classroom.component.html',
+  templateUrl: './classroom-pane.component.html',
 })
-export class ClassroomComponent {
+export class ClassroomPaneComponent {
 
   announcement: ClassroomAnnouncementResponse | null = null;
   protected readonly faBullhorn = faBullhorn;

@@ -5,12 +5,16 @@ module.exports = {
   ],
   theme: {
     colors: {
-      backdrop: '#0F0F0F',
-      primary: '#ffffff',
-      container: '#141414',
-      divider: '#5C5C5C',
-      innerContainer: '#191919',
-      gentle: '#aeaeae'
+      backdrop: '#f8f8ff',
+      primary: '#000000',
+      header: '#ffffff',
+      headerText: '#000000',
+      footer: '#ffffff',
+      footerText: '#000000',
+      container: '#ffffff',
+      divider: '#e0e0e0',
+      innerContainer: '#fafaff',
+      gentle: '#586776',
     },
     extend: {},
   },

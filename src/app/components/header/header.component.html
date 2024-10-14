@@ -1,5 +1,14 @@
-<header class="flex items-center gap-6">
-  <img [alt]="brandingService.branding?.logoAltText" [src]="brandingService.branding?.logoUrl"
-       height="100" width="166">
-  <h1 class="text-6xl font-semibold">{{ brandingService.branding?.brandName }}</h1>
+<header class="flex rounded-t-lg text-footerText px-12 pt-8 justify-between items-center">
+  <div class="flex items-center gap-4">
+    <img [alt]="brandingService.branding?.logoAltText" [src]="brandingService.branding?.logoUrl"
+         height="75" width="125">
+    <h1 class="text-5xl font-semibold">Välkommen till {{ brandingService.branding?.brandName }}!</h1>
+  </div>
+
+  <div class="flex gap-3 items-center justify-end">
+    <span class="text-3xl flex items-center gap-2"><fa-icon [icon]="weatherIcon"
+                                                            size="xs"></fa-icon>
+      {{ temperature + "°" }}</span>
+    <span class="text-5xl w-[166px] text-start">{{ time | date:"HH:mm:ss" }}</span>
+  </div>
 </header>

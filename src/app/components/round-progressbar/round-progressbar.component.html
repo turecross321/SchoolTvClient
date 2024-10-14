@@ -1,0 +1,19 @@
+<div class="text-center flex flex-col gap-1">
+  <p>{{ name }}</p>
+  <div class="relative">
+    <round-progress
+      [background]="'#eaeaea'"
+      [color]="color"
+      [current]="current"
+      [max]="max"
+      [radius]="50"
+      [stroke]="5"
+      [rounded]="true"
+    ></round-progress>
+    <div
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-nowrap text-sm">
+      <p class="-mb-1"><span class="font-semibold text-lg">{{ remaining ? (max - current).toLocaleString() : current.toLocaleString() }}</span> {{unit}}</p>
+      <p class="text-xs">{{ verb }}</p>
+  </div>
+
+</div>

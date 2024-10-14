@@ -10,7 +10,7 @@ import {interval, switchMap} from "rxjs";
 import {MenuResponse} from "../../types/food/menu.response";
 
 @Component({
-  selector: 'app-food',
+  selector: 'app-food-pane',
   standalone: true,
   imports: [
     DividerComponent,
@@ -18,9 +18,9 @@ import {MenuResponse} from "../../types/food/menu.response";
     FaIconComponent,
     PaneComponent
   ],
-  templateUrl: './food.component.html',
+  templateUrl: './food-pane.component.html',
 })
-export class FoodComponent {
+export class FoodPaneComponent {
   menuToday: MenuDayResponse | null = null;
   menuTomorrow: MenuDayResponse | null = null;
   nextDayText: string = ""
