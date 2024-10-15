@@ -1,27 +1,11 @@
 <app-pane [icon]="faTrafficLight" name="Kollektivtrafik">
   @if (stopAreas.length > 0) {
-    <div class="flex flex-col gap-2">
-      <div *ngFor="let stopArea of sortedAreas()" class="flex gap-1 flex-col">
-        <p>{{ stopArea.name.split(",")[0] }}   {{ stopArea.platform }}</p>
-        <div *ngFor="let departure of stopArea.departures"
-             class="bg-innerContainer p-2 rounded-lg flex justify-between items-center">
-          <p>
-            <fa-icon class="inline" [icon]="getLineIcon(departure)"></fa-icon>
-            {{ departure.lineDesignation }} -> {{ departure.shortDirection }}
-          </p>
-          <div class="flex flex-col items-end">
-            <app-date-moment [date]="departure.estimatedTime ?? departure.plannedTime"
-                             [type]="DateMomentType.MinutesRemaining" class="-mb-2"></app-date-moment>
-            <div class="flex gap-1">
-              @if (departure.plannedTime != departure.estimatedTime) {
-                <app-date-moment [date]="departure.plannedTime" class="text-gentle"
-                                 [ngClass]="{'line-through': departure.estimatedTime != null}"></app-date-moment>
-              }
-              @if (departure.estimatedTime) {
-                <app-date-moment [date]="departure.estimatedTime" class="text-gentle"></app-date-moment>
-              }
-            </div>
-          </div>
+    <div class="gap-4 grid grid-cols-2 grid-rows-2 h-full">
+      <div *ngFor="let stopArea of stopAreas" class="flex gap-2 flex-col">
+        <p>{{ stopArea.name.split(",")[0] }}</p>
+        <div class="flex gap-2 flex-col bg-innerContainer h-full rounded-lg p-4 overflow-y-hidden">
+          <app-vasttrafik-departure *ngFor="let departure of stopArea.departures"
+                                    [departure]="departure"></app-vasttrafik-departure>
         </div>
       </div>
     </div>
