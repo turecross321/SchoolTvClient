@@ -1,7 +1,8 @@
-<div class="h-screen flex flex-col justify-between gap-8 bg-backdrop text-primary">
-  <app-header></app-header>
-  <!-- todo: TODO: 1 APRIL COMIC SANS-->
-  <div class="h-full grid grid-rows-3 grid-cols-11 gap-2 overflow-y-hidden px-8 pb-8">
+<div
+  class="h-screen flex flex-col justify-between gap-8 bg-backdrop text-primary transition-colors duration-1000">
+  <app-header class="z-10"></app-header>
+  <div
+    class="h-full grid grid-rows-3 grid-cols-11 gap-2 overflow-y-hidden px-8 pb-8 aprilFools:animate-bounce">
     <app-graduation-money-pane class="col-span-3"></app-graduation-money-pane>
     <app-breaks-pane class="col-span-3"></app-breaks-pane>
     <app-vasttrafik-pane class="col-span-5 row-span-3"></app-vasttrafik-pane>

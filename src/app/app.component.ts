@@ -18,6 +18,4 @@ import {BreaksPane} from "./components/breaks-pane/breaks-pane.component";
 })
 export class AppComponent {
   title = 'school-tv';
-
-
 }

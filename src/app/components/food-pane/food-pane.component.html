@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-1">
     <p>Idag</p>
     <div *ngFor="let day of menuToday?.meals" class="bg-innerContainer p-2 rounded">
-      <span>{{ day }}</span>
+      <span>{{ theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "" + day }}</span>
     </div>
 
   </div>
@@ -10,7 +10,7 @@
   <div class="flex flex-col gap-1">
     <p>{{ nextDayText }}</p>
     <div *ngFor="let day of menuTomorrow?.meals" class="bg-innerContainer p-2 rounded">
-      <span>{{ day }}</span>
+      <span>{{ theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "" + day }}</span>
     </div>
   </div>
 </app-pane>

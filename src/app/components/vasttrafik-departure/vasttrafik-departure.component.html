@@ -4,9 +4,12 @@
     <fa-icon [icon]="getLineIcon(departure)" class="inline"></fa-icon>
     <div class="truncate">
       <p class="truncate">
-        {{ departure.lineDesignation }} -> {{ departure.shortDirection }}
+        {{ departure.lineDesignation }}
+        -> {{ theme.getThemeType() == ThemeType.AprilFools ? "Fridaskolan" : departure.shortDirection }}
       </p>
-      <p class="-mt-1 text-gentle text-sm">Platform {{ departure.platform }}</p>
+      <p class="-mt-1 text-gentle text-sm">
+        {{ theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "" }}
+        Platform {{ departure.platform }}</p>
     </div>
   </div>
   <div class="flex flex-col items-end text-nowrap">

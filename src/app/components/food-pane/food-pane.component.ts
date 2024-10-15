@@ -8,6 +8,7 @@ import {PaneComponent} from "../pane/pane.component";
 import {ApiClientService} from "../../services/api-client.service";
 import {interval, switchMap} from "rxjs";
 import {MenuResponse} from "../../types/food/menu.response";
+import {ThemeService, ThemeType} from "../../services/theme.service";
 
 @Component({
   selector: 'app-food-pane',
@@ -25,8 +26,9 @@ export class FoodPaneComponent {
   menuTomorrow: MenuDayResponse | null = null;
   nextDayText: string = ""
   protected readonly faCutlery = faCutlery;
+  protected readonly ThemeType = ThemeType;
 
-  constructor(public api: ApiClientService) {
+  constructor(public api: ApiClientService, public theme: ThemeService) {
     interval(1000 * 60 * 60 * 24) // 24 hours
       .pipe(
         switchMap(() => this.api.getMenu())
