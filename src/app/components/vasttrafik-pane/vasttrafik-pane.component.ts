@@ -57,7 +57,7 @@ export class VasttrafikPaneComponent {
           return true;
         }
         return false;
-      });
+      }).slice(0, 5);
       return {
         ...stop,
         departures: filteredDepartures
