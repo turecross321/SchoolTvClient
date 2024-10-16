@@ -1,5 +1,6 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
+import {interval} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -7,17 +8,17 @@ import {isPlatformBrowser} from "@angular/common";
 export class ThemeService {
   // todo: refactor this so its at least KIND OF CLEAN
 
-  private readonly isBrowser: boolean;
-
   private theme: Theme = null!;
 
   constructor(@Inject(PLATFORM_ID) platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
-    this.setTheme();
-  }
+    if (isPlatformBrowser(platformId)) {
+      this.setTheme();
 
-  public isThemingSupported(): boolean {
-    return this.isBrowser;
+      interval(1000 * 60) // every minute
+        .subscribe(() => {
+          this.setTheme();
+        })
+    }
   }
 
   public setTheme(): void {
@@ -35,10 +36,6 @@ export class ThemeService {
     document.body.style.fontFamily = this.theme.font;
   }
 
-  public getTheme(): Theme {
-    return this.theme;
-  }
-
   public getThemeType(): ThemeType {
     return this.theme.type;
   }
@@ -49,7 +46,7 @@ export class ThemeService {
   }
 
   private isAprilFirst(date: Date): boolean {
-    return date.getMonth() === 3 && date.getDate() === 1;
+    return date.getMonth() === 9 && date.getDate() === 1;
   }
 }
 
