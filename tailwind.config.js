@@ -19,7 +19,7 @@ export const darkColors = {
   container: '#000000',
   divider: '#00ff00',
   innerContainer: '#001a00',
-  gentle: '#00ff00',
+  gentle: '#f4802d',
 };
 
 const aprilFoolsColors = {

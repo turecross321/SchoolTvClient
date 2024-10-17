@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {DatePipe, NgOptimizedImage} from "@angular/common";
-import {ConfigurationService} from "../../services/configuration.service";
+import {SettingsService} from "../../services/settings.service";
 import {faTemperature0} from "@fortawesome/free-solid-svg-icons";
 import {ApiClientService} from "../../services/api-client.service";
 import {interval, switchMap} from "rxjs";
@@ -21,7 +21,7 @@ export class HeaderComponent {
   weatherIcon = faTemperature0;
   temperature: number = 0;
 
-  constructor(private api: ApiClientService, public brandingService: ConfigurationService) {
+  constructor(private api: ApiClientService, public brandingService: SettingsService) {
     setInterval(() => {
       this.time = new Date();
     }, 1000);

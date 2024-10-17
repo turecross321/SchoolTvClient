@@ -5,7 +5,7 @@
     <div class="truncate">
       <p class="truncate">
         {{ departure.lineDesignation }}
-        -> {{ theme.getThemeType() == ThemeType.AprilFools ? "Fridaskolan" : departure.shortDirection }}
+        -> {{ theme.getThemeType() == ThemeType.AprilFools ? settings.settings?.aprilFoolsDestination : departure.shortDirection }}
       </p>
       <p class="-mt-1 text-gentle text-sm">
         {{ theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "" }}

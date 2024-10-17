@@ -25,7 +25,7 @@ export class RoundProgressbarComponent {
 
   getColor(): string {
     if (this.theme.getThemeType() === ThemeType.Dark)
-      return "#00ff00"; // todo: refactor this so its at least KIND OF CLEAN
+      return "#f4512d"; // todo: refactor this so its at least KIND OF CLEAN
 
     return this.color;
   }

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ConfigurationResponse} from "../types/configuration.response";
+import {SettingsResponse} from "../types/settings.response";
 import {TemperatureResponse} from "../types/temperature.response";
 import {MenuResponse} from "../types/food/menu.response";
 import {ClassroomAnnouncementResponse} from "../types/classroom-announcement.response";
@@ -43,8 +43,8 @@ export class ApiClientService {
     return this.get<TemperatureResponse>('temperature/latest');
   }
 
-  getConfiguration() {
-    return this.get<ConfigurationResponse>('configuration');
+  getSettings() {
+    return this.get<SettingsResponse>('settings');
   }
 
   get<TResponse>(path: string) {

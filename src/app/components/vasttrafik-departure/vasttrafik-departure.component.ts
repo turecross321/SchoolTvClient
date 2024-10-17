@@ -16,6 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {NgClass} from "@angular/common";
 import {ThemeService, ThemeType} from "../../services/theme.service";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
   selector: 'app-vasttrafik-departure',
@@ -32,7 +33,7 @@ export class VasttrafikDepartureComponent {
   protected readonly DateMomentType = DateMomentType;
   protected readonly ThemeType = ThemeType;
 
-  constructor(public theme: ThemeService) {
+  constructor(public theme: ThemeService, public settings: SettingsService) {
   }
 
   getLineIcon(departure: VasttrafikDepartureResponse): IconDefinition {
