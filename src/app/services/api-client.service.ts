@@ -6,6 +6,7 @@ import {MenuResponse} from "../types/food/menu.response";
 import {ClassroomAnnouncementResponse} from "../types/classroom-announcement.response";
 import {VasttrafikStopAreaResponse} from "../types/vasttrafik/vasttrafik-stop-area.response";
 import {SchoolBreaksResponse} from "../types/breaks/school-breaks.response";
+import {GraduationMoneyResponse} from "../types/graduation-money.response";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,10 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) {
     this.baseUrl = 'http://localhost:5000';
+  }
+
+  getGraduationMoneyGoals() {
+    return this.get<GraduationMoneyResponse[]>('graduationMoneyGoals');
   }
 
   getBreaks() {

@@ -12,8 +12,8 @@ import {ThemeService, ThemeType} from "../../services/theme.service";
 })
 export class RoundProgressbarComponent {
   @Input() color: string = "#000000";
-  @Input() current: number = 0;
-  @Input() max: number = 0;
+  @Input() current: number | null = 0;
+  @Input() max: number | null = 0;
   @Input() unit: string = "kr";
   @Input() name: string = "Da Goons"
   @Input() remaining: boolean = false;

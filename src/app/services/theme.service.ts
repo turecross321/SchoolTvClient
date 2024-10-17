@@ -25,7 +25,7 @@ export class ThemeService {
     const now = new Date();
     if (this.isAprilFirst(now)) {
       this.theme = themes[ThemeType.AprilFools];
-    } else if (now.getHours() >= 15 || now.getHours() < 7) {
+    } else if (now.getHours() >= 16 || now.getHours() < 8) {
       this.theme = themes[ThemeType.Dark];
     } else {
       this.theme = themes[ThemeType.Default];
@@ -46,7 +46,7 @@ export class ThemeService {
   }
 
   private isAprilFirst(date: Date): boolean {
-    return date.getMonth() === 9 && date.getDate() === 1;
+    return date.getMonth() === 3 && date.getDate() === 1;
   }
 }
 

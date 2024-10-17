@@ -10,6 +10,6 @@
     <span class="text-3xl flex items-center gap-2"><fa-icon [icon]="weatherIcon"
                                                             size="xs"></fa-icon>
       {{ temperature + "°" }}</span>
-    <span class="text-5xl w-[166px] text-start">{{ time | date:"HH:mm:ss" }}</span>
+    <span class="text-5xl">{{ time | date:"HH:mm" }}</span>
   </div>
 </header>

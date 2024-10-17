@@ -3,8 +3,8 @@
   <div class="relative">
     <round-progress [background]="getBackgroundColor()"
                     [color]="getColor()"
-                    [current]="current"
-                    [max]="max"
+                    [current]="current ?? 0"
+                    [max]="max ?? 1"
                     [radius]="50"
                     [rounded]="true"
                     [stroke]="5"
@@ -12,10 +12,16 @@
     ></round-progress>
     <div
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-nowrap text-sm">
-      <p class="-mb-1"><span
-        class="font-semibold text-lg">{{ remaining ? (max - current).toLocaleString() : current.toLocaleString() }}</span> {{ unit }}
-      </p>
-      <p class="text-xs">{{ verb }}</p>
+      @if (current && max) {
+        <p class="-mb-1"><span
+          class="font-semibold text-lg">{{ remaining ? (max - current).toLocaleString() : current.toLocaleString() }}</span> {{ unit }}
+        </p>
+        <p class="text-xs">{{ verb }}</p>
+      } @else {
+        <p>
+          Ingen data
+        </p>
+      }
     </div>
   </div>
 
