@@ -5,17 +5,19 @@ const defaultColors = {
   primary: '#000000',
   header: '#ffffff',
   headerText: '#000000',
+  title: '#ffffff',
   container: '#ffffff',
   divider: '#e0e0e0',
   innerContainer: '#fafaff',
   gentle: '#586776',
 };
 
-export const darkColors = {
+export const nightColors = {
   backdrop: '#000000',
   primary: '#00ff00',
   header: '#000000',
   headerText: '#00ff00',
+  title: '#d0f42d',
   container: '#000000',
   divider: '#00ff00',
   innerContainer: '#001a00',
@@ -27,6 +29,7 @@ const aprilFoolsColors = {
   primary: '#00ff00',
   header: '#0000ff',
   headerText: '#00ff00',
+  title: '#f4802d',
   container: '#0000ff',
   divider: '#ff0000',
   innerContainer: '#bb00ff',
@@ -46,7 +49,7 @@ module.exports = {
     createThemes({
       default: defaultColors,
       aprilFools: aprilFoolsColors,
-      dark: darkColors,
+      night: nightColors,
     })
   ],
 }

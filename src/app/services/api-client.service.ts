@@ -7,6 +7,7 @@ import {ClassroomAnnouncementResponse} from "../types/classroom-announcement.res
 import {VasttrafikStopAreaResponse} from "../types/vasttrafik/vasttrafik-stop-area.response";
 import {SchoolBreaksResponse} from "../types/breaks/school-breaks.response";
 import {GraduationMoneyResponse} from "../types/graduation-money.response";
+import {ThemeType} from "./theme.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) {
     this.baseUrl = 'http://localhost:5000';
+  }
+
+  getLogoUrl(theme: ThemeType) {
+    return this.baseUrl + '/logo/' + theme.toString();
   }
 
   getGraduationMoneyGoals() {

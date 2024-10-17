@@ -1,6 +1,6 @@
 <app-pane [icon]="faCutlery" name="Mat">
   <div class="flex flex-col gap-1">
-    <p>Idag</p>
+    <h3 class="text-title">Idag</h3>
     <div *ngFor="let day of menuToday?.meals" class="bg-innerContainer p-2 rounded">
       <span>{{ (theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "") + day }}</span>
     </div>
@@ -8,7 +8,7 @@
   </div>
 
   <div class="flex flex-col gap-1">
-    <p>{{ nextDayText }}</p>
+    <h3 class="text-title">{{ nextDayText }}</h3>
     <div *ngFor="let day of menuTomorrow?.meals" class="bg-innerContainer p-2 rounded">
       <span>{{ (theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "") + day }}</span>
     </div>

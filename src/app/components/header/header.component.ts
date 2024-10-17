@@ -5,6 +5,7 @@ import {faTemperature0} from "@fortawesome/free-solid-svg-icons";
 import {ApiClientService} from "../../services/api-client.service";
 import {interval, switchMap} from "rxjs";
 import {FaIconComponent} from "@fortawesome/angular-fontawesome";
+import {ThemeService} from "../../services/theme.service";
 
 @Component({
   selector: 'app-header',
@@ -20,8 +21,9 @@ export class HeaderComponent {
   time: Date = new Date();
   weatherIcon = faTemperature0;
   temperature: number = 0;
+  protected readonly Math = Math;
 
-  constructor(private api: ApiClientService, public brandingService: SettingsService) {
+  constructor(public api: ApiClientService, public settings: SettingsService, public theme: ThemeService) {
     setInterval(() => {
       this.time = new Date();
     }, 1000);

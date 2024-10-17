@@ -24,14 +24,14 @@ export class RoundProgressbarComponent {
   }
 
   getColor(): string {
-    if (this.theme.getThemeType() === ThemeType.Dark)
-      return "#f4512d"; // todo: refactor this so its at least KIND OF CLEAN
+    if (this.theme.getThemeType() === ThemeType.Night)
+      return "#00ff00"; // todo: refactor this so its at least KIND OF CLEAN
 
     return this.color;
   }
 
   getBackgroundColor(): string { // todo: refactor this so its at least KIND OF CLEAN
-    if (this.theme.getThemeType() === ThemeType.Dark)
+    if (this.theme.getThemeType() === ThemeType.Night)
       return "#001a00";
 
     return "#eaeaea";

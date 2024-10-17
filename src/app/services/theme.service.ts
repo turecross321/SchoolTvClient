@@ -26,7 +26,7 @@ export class ThemeService {
     if (this.isAprilFirst(now)) {
       this.theme = themes[ThemeType.AprilFools];
     } else if (now.getHours() >= 16 || now.getHours() < 8) {
-      this.theme = themes[ThemeType.Dark];
+      this.theme = themes[ThemeType.Night];
     } else {
       this.theme = themes[ThemeType.Default];
     }
@@ -53,7 +53,7 @@ export class ThemeService {
 
 export enum ThemeType {
   Default = "default",
-  Dark = "dark",
+  Night = "night",
   AprilFools = "aprilFools"
 }
 
@@ -65,7 +65,7 @@ interface Theme {
 
 export const themes: { [key: string]: Theme } = {
   default: {type: ThemeType.Default, font: "Inter, sans-serif", wordPrefixes: []},
-  dark: {type: ThemeType.Dark, font: "Inter, sans-serif", wordPrefixes: []},
+  night: {type: ThemeType.Night, font: "Inter, sans-serif", wordPrefixes: []},
   aprilFools: {
     type: ThemeType.AprilFools,
     font: "Comic Sans MS, sans-serif",

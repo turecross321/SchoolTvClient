@@ -1,15 +1,15 @@
-<header class="flex rounded-t-lg text-footerText px-12 pt-8 justify-between items-center">
+<header class="flex rounded-t-lg text-headerText px-12 pt-8 justify-between items-center">
   <div class="flex items-center gap-4">
-    <img [alt]="brandingService.settings?.logoAltText" [src]="brandingService.settings?.logoUrl"
-         class="aprilFools:animate-spin" height="75" width="125">
+    <img [alt]="settings.settings?.logoAltText" [src]="api.getLogoUrl(theme.getThemeType())"
+         class="aprilFools:animate-spin contrast-100" height="75" width="125">
     <h1 class="text-5xl font-semibold">Välkommen
-      till {{ brandingService.settings?.brandName }}!</h1>
+      till {{ settings.settings?.brandName }}!</h1>
   </div>
 
   <div class="flex gap-3 items-center justify-end">
     <span class="text-3xl flex items-center gap-2"><fa-icon [icon]="weatherIcon"
                                                             size="xs"></fa-icon>
-      {{ temperature + "°" }}</span>
+      {{ Math.round(temperature).toLocaleString() + "°" }}</span>
     <span class="text-5xl">{{ time | date:"HH:mm" }}</span>
   </div>
 </header>
