@@ -8,6 +8,7 @@ import {VasttrafikStopAreaResponse} from "../types/vasttrafik/vasttrafik-stop-ar
 import {SchoolBreaksResponse} from "../types/breaks/school-breaks.response";
 import {GraduationMoneyResponse} from "../types/graduation-money.response";
 import {ThemeType} from "./theme.service";
+import {SunPhasesResponse} from "../types/sun-phases.response";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class ApiClientService {
 
   constructor(private http: HttpClient) {
     this.baseUrl = 'http://localhost:5000';
+  }
+
+  getSunPhases() {
+    return this.get<SunPhasesResponse>('sunPhases');
   }
 
   getLogoUrl(theme: ThemeType) {

@@ -1,6 +1,8 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
 import {interval} from "rxjs";
+import {ApiClientService} from "./api-client.service";
+import {SunPhasesResponse} from "../types/sun-phases.response";
 
 @Injectable({
   providedIn: 'root'
@@ -9,23 +11,35 @@ export class ThemeService {
   // todo: refactor this so its at least KIND OF CLEAN
 
   private theme: Theme = null!;
+  private sunPhases: SunPhasesResponse | null = null;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) platformId: Object, private api: ApiClientService) {
     if (isPlatformBrowser(platformId)) {
-      this.setTheme();
+      api.getSunPhases().subscribe(response => {
+        this.sunPhases = response;
+        this.applyTheme();
+      });
 
       interval(1000 * 60) // every minute
         .subscribe(() => {
-          this.setTheme();
-        })
+          this.applyTheme();
+        });
+
+      interval(1000 * 60 * 60) // every hour
+        .subscribe(() => {
+          api.getSunPhases().subscribe(response => {
+            this.sunPhases = response;
+          });
+        });
     }
   }
 
-  public setTheme(): void {
+  public applyTheme(): void {
     const now = new Date();
     if (this.isAprilFirst(now)) {
       this.theme = themes[ThemeType.AprilFools];
-    } else if (now.getHours() >= 16 || now.getHours() < 8) {
+    } else if (this.sunPhases && this.sunPhases.dawn && this.sunPhases.dusk &&
+      (now > new Date(this.sunPhases.dusk) || now < new Date(this.sunPhases.dawn))) {
       this.theme = themes[ThemeType.Night];
     } else {
       this.theme = themes[ThemeType.Default];
