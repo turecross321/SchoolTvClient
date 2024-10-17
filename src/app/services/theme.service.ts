@@ -38,8 +38,8 @@ export class ThemeService {
     const now = new Date();
     if (this.isAprilFirst(now)) {
       this.theme = themes[ThemeType.AprilFools];
-    } else if (this.sunPhases && this.sunPhases.dawn && this.sunPhases.dusk &&
-      (now > new Date(this.sunPhases.dusk) || now < new Date(this.sunPhases.dawn))) {
+    } else if (this.sunPhases && this.sunPhases?.dawn && this.sunPhases?.dusk &&
+      (now > new Date(this.sunPhases!.dusk!) || now < new Date(this.sunPhases!.dawn!))) {
       this.theme = themes[ThemeType.Night];
     } else {
       this.theme = themes[ThemeType.Default];

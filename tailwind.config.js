@@ -5,7 +5,7 @@ const defaultColors = {
   primary: '#000000',
   header: '#ffffff',
   headerText: '#000000',
-  title: '#ffffff',
+  title: '#000000',
   container: '#ffffff',
   divider: '#e0e0e0',
   innerContainer: '#fafaff',
