@@ -14,13 +14,44 @@ export class RoundProgressbarComponent {
   @Input() color: string = "#000000";
   @Input() current: number | null = 0;
   @Input() max: number | null = 0;
-  @Input() unit: string = "kr";
+  @Input() unitSingle: string = "kr";
+  @Input() unitMultiple: string = "kr";
   @Input() name: string = "Da Goons"
   @Input() remaining: boolean = false;
   @Input() verb: string = "insamlat"
 
   constructor(private theme: ThemeService) {
 
+  }
+
+  getCurrentValue(): number | null {
+    let value;
+
+    if (this.current == null)
+      value = null;
+    else if (this.remaining) {
+      if (this.max == null) {
+        value = null;
+      }
+
+      value = this.max! - this.current!;
+    } else {
+      value = this.current;
+    }
+
+    return value;
+  }
+
+  getCurrentString(): string | null {
+    const value = this.getCurrentValue();
+
+    if (!value)
+      return null;
+
+    if (value <= 1)
+      return "< 1";
+
+    return value.toLocaleString();
   }
 
   getColor(): string {

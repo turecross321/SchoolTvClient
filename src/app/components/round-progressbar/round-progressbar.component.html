@@ -12,9 +12,9 @@
     ></round-progress>
     <div
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-nowrap text-sm">
-      @if (current && max) {
+      @if (current != null && max != null) {
         <p class="-mb-1"><span
-          class="font-semibold text-lg">{{ remaining ? (max - current).toLocaleString() : current.toLocaleString() }}</span> {{ unit }}
+          class="font-semibold text-lg">{{ getCurrentString() }}</span> {{ getCurrentValue()! <= 1 ? unitSingle : unitMultiple }}
         </p>
         <p class="text-xs">{{ verb }}</p>
       } @else {

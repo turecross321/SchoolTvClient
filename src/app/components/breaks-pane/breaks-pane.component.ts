@@ -44,9 +44,11 @@ export class BreaksPane {
     const start = this.breaks?.latestStartedSummerBreakEndDate ? new Date(this.breaks.latestStartedSummerBreakEndDate) : new Date();
     const now = new Date();
     const timeDifference = now.getTime() - start.getTime();
-    const daysDifference = timeDifference / (1000 * 3600 * 24);
+    const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
 
-    return Math.ceil(Math.abs(daysDifference));
+    console.log(daysDifference);
+
+    return Math.round(Math.abs(daysDifference));
   }
 
 }

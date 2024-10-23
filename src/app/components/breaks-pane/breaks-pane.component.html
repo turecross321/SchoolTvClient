@@ -3,6 +3,6 @@
     <app-round-progressbar *ngFor="let b of breaks?.relevantBreaks" [color]="b.colorHex" [current]="getDaysElapsed()"
                            [max]="getBreakMax(b)"
                            [name]="b.name"
-                           [remaining]="true" unit="dagar" verb="kvar"></app-round-progressbar>
+                           [remaining]="true" unitMultiple="dagar" unitSingle="dag" verb="kvar"></app-round-progressbar>
   </div>
 </app-pane>
