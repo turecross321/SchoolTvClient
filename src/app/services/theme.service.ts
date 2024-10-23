@@ -14,15 +14,17 @@ export class ThemeService {
   private sunPhases: SunPhasesResponse | null = null;
 
   constructor(@Inject(PLATFORM_ID) platformId: Object, private api: ApiClientService) {
+    this.applyTheme(themes[ThemeType.Default]);
+
     if (isPlatformBrowser(platformId)) {
       api.getSunPhases().subscribe(response => {
         this.sunPhases = response;
-        this.applyTheme();
+        this.applyAppropriateTheme();
       });
 
       interval(1000 * 60) // every minute
         .subscribe(() => {
-          this.applyTheme();
+          this.applyAppropriateTheme();
         });
 
       interval(1000 * 60 * 60) // every hour
@@ -34,20 +36,19 @@ export class ThemeService {
     }
   }
 
-  public applyTheme(): void {
+  public applyAppropriateTheme(): void {
     const now = new Date();
+    let theme;
     if (this.isAprilFirst(now)) {
-      this.theme = themes[ThemeType.AprilFools];
+      theme = themes[ThemeType.AprilFools];
     } else if (this.sunPhases && this.sunPhases?.dawn && this.sunPhases?.dusk &&
       (now > new Date(this.sunPhases!.dusk!) || now < new Date(this.sunPhases!.dawn!))) {
-      this.theme = themes[ThemeType.Night];
+      theme = themes[ThemeType.Night];
     } else {
-      this.theme = themes[ThemeType.Default];
+      theme = themes[ThemeType.Default];
     }
 
-    // @ts-ignore
-    document.getRootNode().children[0].className = this.theme.type;
-    document.body.style.fontFamily = this.theme.font;
+    this.applyTheme(theme);
   }
 
   public getThemeType(): ThemeType {
@@ -57,6 +58,14 @@ export class ThemeService {
   public getRandomWordPrefix(): string {
     const theme = this.theme;
     return theme.wordPrefixes[Math.floor(Math.random() * theme.wordPrefixes.length)];
+  }
+
+  private applyTheme(theme: Theme) {
+    this.theme = theme;
+
+    // @ts-ignore
+    document.getRootNode().children[0].className = this.theme.type;
+    document.body.style.fontFamily = this.theme.font;
   }
 
   private isAprilFirst(date: Date): boolean {

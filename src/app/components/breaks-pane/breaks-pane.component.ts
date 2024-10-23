@@ -46,8 +46,6 @@ export class BreaksPane {
     const timeDifference = now.getTime() - start.getTime();
     const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
 
-    console.log(daysDifference);
-
     return Math.round(Math.abs(daysDifference));
   }
 
