@@ -8,6 +8,7 @@ import {ClassroomPaneComponent} from "./components/classroom-pane/classroom-pane
 import {VasttrafikPaneComponent} from "./components/vasttrafik-pane/vasttrafik-pane.component";
 import {GraduationMoneyPaneComponent} from "./components/graduation-money-pane/graduation-money-pane.component";
 import {BreaksPane} from "./components/breaks-pane/breaks-pane.component";
+import {ApiClientService} from "./services/api-client.service";
 
 @Component({
   selector: 'app-root',
@@ -18,4 +19,8 @@ import {BreaksPane} from "./components/breaks-pane/breaks-pane.component";
 })
 export class AppComponent {
   title = 'school-tv';
+
+  constructor(public api: ApiClientService) {
+    this.api.authenticate();
+  }
 }
