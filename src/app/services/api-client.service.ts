@@ -17,28 +17,34 @@ import {catchError} from "rxjs";
 export class ApiClientService {
 
   readonlyPassword: string | null = null;
+  baseUrl: string | null = null;
   private readonlyPasswordKey = "readonlyPassword";
-  private readonly baseUrl: string;
+  private baseUrlKey = "baseUrl";
 
   constructor(private http: HttpClient) {
-    this.baseUrl = 'http://localhost:5000';
   }
 
-  isAuthenticated() {
-    return this.readonlyPassword !== null;
+  isConfigured() {
+    return this.readonlyPassword != null && this.baseUrl != null;
   }
 
-  authenticate(): void {
-    const cachedPassword = localStorage.getItem(this.readonlyPasswordKey);
-    if (cachedPassword != null) {
-      this.readonlyPassword = cachedPassword;
-      return;
+  configure(): void {
+    const savedBaseUrl = localStorage.getItem(this.baseUrlKey);
+    if (savedBaseUrl != null) {
+      this.baseUrl = savedBaseUrl;
+    } else {
+      const baseUrlInput = window.prompt('Please enter the api base url', '');
+      this.baseUrl = baseUrlInput;
+      localStorage.setItem(this.baseUrlKey, baseUrlInput!);
     }
 
-    const userInput = window.prompt('Please enter the readonly password:', '');
-    if (userInput !== null) {
-      this.readonlyPassword = userInput;
-      localStorage.setItem(this.readonlyPasswordKey, userInput);
+    const savedPassword = localStorage.getItem(this.readonlyPasswordKey);
+    if (savedPassword != null) {
+      this.readonlyPassword = savedPassword;
+    } else {
+      const passwordInput = window.prompt('Please enter the readonly password', '');
+      this.readonlyPassword = passwordInput;
+      localStorage.setItem(this.readonlyPasswordKey, passwordInput!);
     }
   }
 
@@ -83,9 +89,14 @@ export class ApiClientService {
 
     return this.http.get<TResponse>(this.baseUrl + '/' + path, options).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
+        if (error.status === 401 || error.status === 0) {
           localStorage.removeItem(this.readonlyPasswordKey);
           this.readonlyPassword = null;
+
+          localStorage.removeItem(this.baseUrlKey);
+          this.baseUrl = null;
+
+          this.configure();
         }
         throw error;
       })
