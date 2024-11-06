@@ -1,24 +1,24 @@
-<div class="text-center flex flex-col gap-1">
+<div class="text-center flex flex-col gap-2">
   <p class="text-title">{{ name }}</p>
   <div class="relative">
     <round-progress [background]="getBackgroundColor()"
                     [color]="getColor()"
                     [current]="current ?? 0"
                     [max]="max ?? 1"
-                    [radius]="50"
+                    [radius]="70"
                     [rounded]="true"
-                    [stroke]="5"
+                    [stroke]="7"
                     class="aprilFools:animate-spin"
     ></round-progress>
     <div
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-nowrap text-sm">
       @if (current != null && max != null) {
         <p class="-mb-1"><span
-          class="font-semibold text-lg">{{ getCurrentString() }}</span> {{ getCurrentValue()! <= 1 ? unitSingle : unitMultiple }}
+          class="font-semibold text-xl">{{ getCurrentString() }}</span> {{ getCurrentValue()! <= 1 ? unitSingle : unitMultiple }}
         </p>
-        <p class="text-xs">{{ verb }}</p>
+        <p>{{ verb }}</p>
       } @else {
-        <p>
+        <p class="text-sm">
           Ingen data
         </p>
       }

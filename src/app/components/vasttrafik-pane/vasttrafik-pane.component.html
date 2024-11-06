@@ -1,9 +1,9 @@
 <app-pane [icon]="faTrafficLight" name="Kollektivtrafik">
   @if (stopAreas.length > 0) {
     <div class="gap-4 grid grid-cols-2 grid-rows-2 h-full">
-      <div *ngFor="let stopArea of stopAreas" class="flex gap-2 flex-col">
+      <div *ngFor="let stopArea of stopAreas" class="flex gap-4 flex-col">
         <h3 class="text-title">{{ stopArea.name }}</h3>
-        <div class="gap-2 grid grid-rows-5 grid-cols-1 bg-innerContainer h-full rounded-lg p-4 overflow-y-hidden">
+        <div class="gap-2 grid grid-rows-6 grid-cols-1 bg-innerContainer h-full rounded-lg p-4 overflow-y-hidden">
           <app-vasttrafik-departure *ngFor="let departure of stopArea.departures"
                                     [departure]="departure"></app-vasttrafik-departure>
         </div>
