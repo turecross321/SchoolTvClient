@@ -10,42 +10,24 @@ import {GraduationMoneyResponse} from "../types/graduation-money.response";
 import {ThemeType} from "./theme.service";
 import {SunPhasesResponse} from "../types/sun-phases.response";
 import {catchError} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiClientService {
-
-  readonlyPassword: string | null = null;
+  readOnlyPassword: string | null = null;
   baseUrl: string | null = null;
-  private readonlyPasswordKey = "readonlyPassword";
-  private baseUrlKey = "baseUrl";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe((params) => {
+      this.baseUrl = params["baseUrl"];
+      this.readOnlyPassword = params["readOnlyPassword"];
+    });
   }
 
   isConfigured() {
-    return this.readonlyPassword != null && this.baseUrl != null;
-  }
-
-  configure(): void {
-    const savedBaseUrl = localStorage.getItem(this.baseUrlKey);
-    if (savedBaseUrl != null) {
-      this.baseUrl = savedBaseUrl;
-    } else {
-      const baseUrlInput = window.prompt('Please enter the api base url', '');
-      this.baseUrl = baseUrlInput;
-      localStorage.setItem(this.baseUrlKey, baseUrlInput!);
-    }
-
-    const savedPassword = localStorage.getItem(this.readonlyPasswordKey);
-    if (savedPassword != null) {
-      this.readonlyPassword = savedPassword;
-    } else {
-      const passwordInput = window.prompt('Please enter the readonly password', '');
-      this.readonlyPassword = passwordInput;
-      localStorage.setItem(this.readonlyPasswordKey, passwordInput!);
-    }
+    return this.readOnlyPassword != null && this.baseUrl != null;
   }
 
   getSunPhases() {
@@ -53,7 +35,7 @@ export class ApiClientService {
   }
 
   getLogoUrl(theme: ThemeType) {
-    return this.baseUrl + '/logo/' + theme.toString() + '?password=' + this.readonlyPassword;
+    return this.baseUrl + '/logo/' + theme.toString() + '?password=' + this.readOnlyPassword;
   }
 
   getGraduationMoneyGoals() {
@@ -85,18 +67,14 @@ export class ApiClientService {
   }
 
   get<TResponse>(path: string) {
-    let options = {headers: {Password: this.readonlyPassword ?? ""}};
+    let options = {headers: {Password: this.readOnlyPassword ?? ""}};
 
     return this.http.get<TResponse>(this.baseUrl + '/' + path, options).pipe(
       catchError((error: HttpErrorResponse) => {
-        if (error.status === 401 || error.status === 0) {
-          localStorage.removeItem(this.readonlyPasswordKey);
-          this.readonlyPassword = null;
-
-          localStorage.removeItem(this.baseUrlKey);
-          this.baseUrl = null;
-
-          this.configure();
+        if (error.status === 401) {
+          console.error("Invalid password. Please update readonly password parameter.");
+        } else if (error.status === 0) {
+          console.error("Failed to reach server. Please update base url or try again later.")
         }
         throw error;
       })

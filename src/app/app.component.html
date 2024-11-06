@@ -11,4 +11,37 @@
       <app-food-pane class="col-span-3 row-span-2"></app-food-pane>
     </div>
   </div>
+} @else {
+  <div class="h-screen flex flex-col justify-center items-center bg-backdrop text-primary p-8">
+    <h2 class="text-2xl mb-6">Please configure the credentials</h2>
+    <form class="flex flex-col gap-4">
+      <label for="baseUrl" class="text-lg">API Base URL</label>
+      <input
+        type="text"
+        id="baseUrl"
+        name="baseUrl"
+        class="px-4 py-2 border rounded-md"
+        placeholder="Enter base URL"
+        value="http://localhost:5000"
+        required
+      />
+
+      <label for="readOnlyPassword" class="text-lg">Read-Only Password</label>
+      <input
+        type="password"
+        id="readOnlyPassword"
+        name="readOnlyPassword"
+        class="px-4 py-2 border rounded-md"
+        placeholder="Enter read-only password"
+        required
+      />
+
+      <button
+        type="submit"
+        class="mt-4 px-6 py-2 rounded-md bg-green-200"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
 }

@@ -21,6 +21,5 @@ export class AppComponent {
   title = 'school-tv';
 
   constructor(public api: ApiClientService) {
-    this.api.configure();
   }
 }
