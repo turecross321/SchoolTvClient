@@ -23,7 +23,7 @@ export class GraduationMoneyPaneComponent {
 
   classes: GraduationMoneyResponse[] = [];
 
-  progressColor = "#ffcc00";
+  progressColor = "#ff8f00";
   protected readonly faMoneyBill = faMoneyBill;
   protected readonly faPiggyBank = faPiggyBank;
 
