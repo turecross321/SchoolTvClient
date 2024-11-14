@@ -38,11 +38,12 @@ export class ThemeService {
 
   public applyAppropriateTheme(): void {
     const now = new Date();
+    const dusk = new Date(this.sunPhases!.dusk!);
+    const dawn = new Date(this.sunPhases!.dawn!);
     let theme;
     if (this.isAprilFirst(now)) {
       theme = themes[ThemeType.AprilFools];
-    } else if (this.sunPhases && this.sunPhases?.dawn && this.sunPhases?.dusk &&
-      (now > new Date(this.sunPhases!.dusk!) || now < new Date(this.sunPhases!.dawn!))) {
+    } else if (now >= dusk || now < dawn) {
       theme = themes[ThemeType.Night];
     } else {
       theme = themes[ThemeType.Default];
