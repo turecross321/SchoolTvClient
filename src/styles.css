@@ -10,4 +10,5 @@
 * {
   scrollbar-width: none; /* Hides the scrollbar */
   scrollbar-color: transparent transparent; /* Optional: Hides the scrollbar's track and thumb */
+  cursor: none;
 }
