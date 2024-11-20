@@ -28,7 +28,7 @@ export class GraduationMoneyPaneComponent {
   protected readonly faPiggyBank = faPiggyBank;
 
   constructor(public api: ApiClientService) {
-    interval(1000 * 60) // 1 minute
+    interval(1000 * 60 * 60) // 1 hour
       .pipe(
         switchMap(() => this.api.getGraduationMoneyGoals())
       )
