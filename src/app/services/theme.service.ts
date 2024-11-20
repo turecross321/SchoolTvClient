@@ -1,6 +1,5 @@
 import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {isPlatformBrowser} from "@angular/common";
-import {interval} from "rxjs";
 import {ApiClientService} from "./api-client.service";
 import {SunPhasesResponse} from "../types/sun-phases.response";
 
@@ -22,17 +21,18 @@ export class ThemeService {
         this.applyAppropriateTheme();
       });
 
-      interval(1000 * 60) // every minute
-        .subscribe(() => {
-          this.applyAppropriateTheme();
-        });
+// Set up the interval to apply the appropriate theme every minute (1000 * 60 ms)
+      setInterval(() => {
+        this.applyAppropriateTheme();
+      }, 1000 * 60); // every minute
 
-      interval(1000 * 60 * 60) // every hour
-        .subscribe(() => {
-          api.getSunPhases().subscribe(response => {
-            this.sunPhases = response;
-          });
+// Set up the interval to fetch sun phases every hour (1000 * 60 * 60 ms)
+      setInterval(() => {
+        this.api.getSunPhases().subscribe(response => {
+          this.sunPhases = response;
         });
+      }, 1000 * 60 * 60); // every hour
+
     }
   }
 

@@ -4,7 +4,6 @@ import {faMoneyBill, faPiggyBank} from "@fortawesome/free-solid-svg-icons";
 import {RoundProgressComponent} from "angular-svg-round-progressbar";
 import {RoundProgressbarComponent} from "../round-progressbar/round-progressbar.component";
 import {ApiClientService} from "../../services/api-client.service";
-import {interval, switchMap} from "rxjs";
 import {GraduationMoneyResponse} from "../../types/graduation-money.response";
 import {NgForOf} from "@angular/common";
 
@@ -28,18 +27,17 @@ export class GraduationMoneyPaneComponent {
   protected readonly faPiggyBank = faPiggyBank;
 
   constructor(public api: ApiClientService) {
-    interval(1000 * 60 * 60) // 1 hour
-      .pipe(
-        switchMap(() => this.api.getGraduationMoneyGoals())
-      )
-      .subscribe(goals => {
-        this.classes = goals;
-      });
-
     // Initial fetch when the service starts
     this.api.getGraduationMoneyGoals().subscribe(goals => {
       this.classes = goals;
     });
+
+    // Set up the interval to fetch data every hour
+    setInterval(() => {
+      this.api.getGraduationMoneyGoals().subscribe(goals => {
+        this.classes = goals;
+      });
+    }, 1000 * 60 * 60); // 1 hour
   }
 }
 

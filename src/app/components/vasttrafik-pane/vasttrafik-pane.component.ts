@@ -3,7 +3,6 @@ import {PaneComponent} from "../pane/pane.component";
 import {faTrafficLight} from "@fortawesome/free-solid-svg-icons";
 import {NgClass, NgForOf} from "@angular/common";
 import {ApiClientService} from "../../services/api-client.service";
-import {interval, switchMap} from "rxjs";
 import {DateComponent} from "../date/date.component";
 import {DateMomentComponent, DateMomentType} from "../date-moment/date-moment.component";
 import {VasttrafikStopAreaResponse} from "../../types/vasttrafik/vasttrafik-stop-area.response";
@@ -33,18 +32,18 @@ export class VasttrafikPaneComponent {
   protected readonly Math = Math;
 
   constructor(public api: ApiClientService) {
-    interval(1000 * 60) // 1 minute
-      .pipe(
-        switchMap(() => this.api.getVasttrafikDepartures())
-      )
-      .subscribe(departures => {
-        this.setDepartures(departures);
-      });
-
-    // Initial fetch when the service starts
+// Initial fetch when the service starts
     this.api.getVasttrafikDepartures().subscribe(departures => {
       this.setDepartures(departures);
     });
+
+// Set up the interval to fetch data every minute (1000 * 60 ms)
+    setInterval(() => {
+      this.api.getVasttrafikDepartures().subscribe(departures => {
+        this.setDepartures(departures);
+      });
+    }, 1000 * 60); // every minute
+
   }
 
   setDepartures(response: VasttrafikStopAreaResponse[]) {

@@ -6,7 +6,6 @@ import {FaIconComponent} from "@fortawesome/angular-fontawesome";
 import {faCutlery} from '@fortawesome/free-solid-svg-icons';
 import {PaneComponent} from "../pane/pane.component";
 import {ApiClientService} from "../../services/api-client.service";
-import {interval, switchMap} from "rxjs";
 import {MenuResponse} from "../../types/food/menu.response";
 import {ThemeService, ThemeType} from "../../services/theme.service";
 
@@ -29,18 +28,18 @@ export class FoodPaneComponent {
   protected readonly ThemeType = ThemeType;
 
   constructor(public api: ApiClientService, public theme: ThemeService) {
-    interval(1000 * 60 * 60 * 24) // 24 hours
-      .pipe(
-        switchMap(() => this.api.getMenu())
-      )
-      .subscribe(menu => {
-        this.setMenus(menu);
-      });
-
-    // Initial fetch when the service starts
+// Initial fetch when the service starts
     this.api.getMenu().subscribe(menu => {
       this.setMenus(menu);
     });
+
+// Set up the interval to fetch data every hour
+    setInterval(() => {
+      this.api.getMenu().subscribe(menu => {
+        this.setMenus(menu);
+      });
+    }, 1000 * 60 * 60); // 1 hour
+
   }
 
   setMenus(response: MenuResponse | null) {
