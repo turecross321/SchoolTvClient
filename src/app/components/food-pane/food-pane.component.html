@@ -1,16 +1,20 @@
 <app-pane [icon]="faCutlery" name="Mat">
-  <div class="flex flex-col gap-2">
-    <h3 class="text-title">Idag</h3>
-    <div *ngFor="let day of menuToday?.meals" class="bg-innerContainer p-3 rounded-lg">
-      <span>{{ (theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "") + day }}</span>
-    </div>
+  @if (menuToday() != null) {
+    <div class="flex flex-col gap-2">
+      <h3 class="text-title">Idag</h3>
+      <div *ngFor="let day of menuToday()!.meals" class="bg-innerContainer p-3 rounded-lg">
+        <span>{{ (theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "") + day }}</span>
+      </div>
 
-  </div>
-
-  <div class="flex flex-col gap-2">
-    <h3 class="text-title">{{ nextDayText }}</h3>
-    <div *ngFor="let day of menuTomorrow?.meals" class="bg-innerContainer p-3 rounded-lg">
-      <span>{{ (theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "") + day }}</span>
     </div>
-  </div>
+  }
+
+  @if (nextMenu() != null) {
+    <div class="flex flex-col gap-2">
+      <h3 class="text-title">{{ nextMenuTitle() }}</h3>
+      <div *ngFor="let day of nextMenu()!.meals" class="bg-innerContainer p-3 rounded-lg">
+        <span>{{ (theme.getThemeType() == ThemeType.AprilFools ? theme.getRandomWordPrefix() + " " : "") + day }}</span>
+      </div>
+    </div>
+  }
 </app-pane>
