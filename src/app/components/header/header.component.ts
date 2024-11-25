@@ -28,16 +28,16 @@ export class HeaderComponent {
     }, 1000);
 
 // Initial fetch when the service starts
-    this.api.getLatestTemperature().subscribe(temp => {
-      this.temperature = temp.celsius;
-    });
+    //this.api.getLatestTemperature().subscribe(temp => {
+    //  this.temperature = temp.celsius;
+    //});
 
 // Set up the interval to fetch data every minute
-    setInterval(() => {
-      this.api.getLatestTemperature().subscribe(temp => {
-        this.temperature = temp.celsius;
-      });
-    }, 60 * 1000); // every minute
+    //setInterval(() => {
+    //  this.api.getLatestTemperature().subscribe(temp => {
+    //    this.temperature = temp.celsius;
+    //  });
+    //}, 60 * 1000); // every minute
 
   }
 }
