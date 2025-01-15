@@ -23,8 +23,10 @@ export class ClassroomPaneComponent {
   protected readonly faBullhorn = faBullhorn;
 
   constructor(private apiClient: ApiClientService) {
-    this.apiClient.getLatestClassroomAnnouncement().subscribe((announcement) => {
-      this.announcement = announcement;
-    })
+    setInterval(() => {
+      this.apiClient.getLatestClassroomAnnouncement().subscribe((announcement) => {
+        this.announcement = announcement;
+      })
+    }, 1000 * 60 * 60); // 1 hour
   }
 }
