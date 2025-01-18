@@ -28,11 +28,11 @@ export class BreaksPane {
   }
 
   getBreakMax(b: SchoolBreakResponse) {
-    if (!this.breaks?.latestStartedSummerBreakEndDate) {
+    if (!this.breaks?.latestTermBreakingBreakEndDate) {
       return 0;
     }
 
-    const start = new Date(this.breaks.latestStartedSummerBreakEndDate);
+    const start = new Date(this.breaks.latestTermBreakingBreakEndDate);
     const end = new Date(b.startDate);
     const timeDifference = end.getTime() - start.getTime();
     const daysDifference = timeDifference / (1000 * 3600 * 24);
@@ -41,7 +41,7 @@ export class BreaksPane {
   }
 
   getDaysElapsed() {
-    const start = this.breaks?.latestStartedSummerBreakEndDate ? new Date(this.breaks.latestStartedSummerBreakEndDate) : new Date();
+    const start = this.breaks?.latestTermBreakingBreakEndDate ? new Date(this.breaks.latestTermBreakingBreakEndDate) : new Date();
     const now = new Date();
     const timeDifference = now.getTime() - start.getTime();
     const daysDifference = timeDifference / (1000 * 60 * 60 * 24);

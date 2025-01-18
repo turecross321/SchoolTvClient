@@ -2,5 +2,5 @@
 
 export interface SchoolBreaksResponse {
   relevantBreaks: SchoolBreakResponse[];
-  latestStartedSummerBreakEndDate: string | null;
+  latestTermBreakingBreakEndDate: string | null;
 }
