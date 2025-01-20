@@ -1,8 +1,10 @@
 <app-pane [icon]="faClock" name="Lov">
   <div class="w-full flex h-full items-center justify-center gap-4">
-    <app-round-progressbar *ngFor="let b of breaks?.relevantBreaks" [color]="b.colorHex" [current]="getDaysElapsed()"
+    <app-round-progressbar *ngFor="let b of breaks?.relevantBreaks" [color]="b.colorHex"
+                           [current]="getDaysLeft(b)"
                            [max]="getBreakMax(b)"
                            [name]="b.name"
-                           [remaining]="true" unitMultiple="dagar" unitSingle="dag" verb="kvar"></app-round-progressbar>
+                           unitMultiple="dagar" unitSingle="dag"
+                           verb="kvar"></app-round-progressbar>
   </div>
 </app-pane>

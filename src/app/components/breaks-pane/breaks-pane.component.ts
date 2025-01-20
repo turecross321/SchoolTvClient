@@ -45,8 +45,20 @@ export class BreaksPane {
     const now = new Date();
     const timeDifference = now.getTime() - start.getTime();
     const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
-
     return Math.round(Math.abs(daysDifference));
   }
+
+  getDaysLeft(b: SchoolBreakResponse) {
+    return this.getBreakMax(b) - this.getDaysElapsed();
+  }
+
+  /*
+  getDenominator(b: SchoolBreakResponse) {
+    const daysLeft = this.getDaysLeft(b);
+    if (daysLeft > 7)
+      return 7;
+
+    return 1;
+  }*/
 
 }

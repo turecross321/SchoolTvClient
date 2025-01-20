@@ -13,11 +13,11 @@ import {ThemeService, ThemeType} from "../../services/theme.service";
 export class RoundProgressbarComponent {
   @Input() color: string = "#000000";
   @Input() current: number | null = 0;
+  @Input() currentTextValueDenominator: number = 1; // A value to divide the formatted text value by
   @Input() max: number | null = 0;
   @Input() unitSingle: string = "kr";
   @Input() unitMultiple: string = "kr";
   @Input() name: string = "Da Goons"
-  @Input() remaining: boolean = false;
   @Input() verb: string = "insamlat"
 
   constructor(private theme: ThemeService) {
@@ -29,13 +29,7 @@ export class RoundProgressbarComponent {
 
     if (this.current == null)
       value = null;
-    else if (this.remaining) {
-      if (this.max == null) {
-        value = null;
-      }
-
-      value = this.max! - this.current!;
-    } else {
+    else {
       value = this.current;
     }
 
@@ -48,10 +42,12 @@ export class RoundProgressbarComponent {
     if (!value)
       return null;
 
-    if (value <= 1)
+    const adjusted = parseFloat((value / this.currentTextValueDenominator).toFixed(1));
+
+    if (adjusted <= 1)
       return "< 1";
 
-    return value.toLocaleString();
+    return adjusted.toLocaleString();
   }
 
   getColor(): string {
