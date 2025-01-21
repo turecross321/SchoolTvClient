@@ -1,6 +1,6 @@
 <app-pane [icon]="faBullhorn" name="Senaste Classroom-inlägget">
   @if (announcement != null) {
-    <div class="bg-innerContainer rounded-lg w-full p-4 flex flex-col gap-2 h-full">
+    <div class="w-full flex flex-col gap-2 h-full">
       <div class="flex gap-2 items-center">
         <img [ngSrc]="announcement.userPhotoUrl" alt="Profilbild" width="50" height="50" class="rounded">
         <div>
@@ -9,14 +9,14 @@
         </div>
 
       </div>
-      <div class="rounded-lg h-full">
+      <div class="rounded-lg h-full bg-innerContainer p-4">
         <p>{{ announcement.text }}
         </p>
       </div>
     </div>
   } @else {
     <div class="h-full w-full flex items-center justify-center">
-    <p class="">Ingen data</p>
+      <p class="">Ingen data</p>
     </div>
   }
 </app-pane>
