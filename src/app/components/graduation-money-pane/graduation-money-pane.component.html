@@ -1,7 +1,8 @@
 <app-pane [icon]="faPiggyBank" name="Studentkassa">
   <div class="w-full flex h-full items-center justify-center gap-4">
     <app-round-progressbar *ngFor="let m of classes" [color]="progressColor" [current]="m.currentAmount"
-                           [max]="m.goal" [name]="m.className" unitMultiple="kr" unitSingle="kr">
+                           [max]="m.goal"
+                           [name]="m.className" [textCurrent]="m.currentAmount" unitMultiple="kr" unitSingle="kr">
     </app-round-progressbar>
   </div>
 </app-pane>

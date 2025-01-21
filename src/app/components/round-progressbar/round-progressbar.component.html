@@ -14,7 +14,7 @@
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-nowrap text-sm">
       @if (current != null && max != null) {
         <p class="-mb-1"><span
-          class="font-semibold text-xl">{{ getCurrentString() }}</span> {{ getCurrentValue()! <= 1 ? unitSingle : unitMultiple }}
+          class="font-semibold text-xl">{{ getCurrentString() }}</span> {{ textCurrent == 1 ? unitSingle : unitMultiple }}
         </p>
         <p>{{ verb }}</p>
       } @else {

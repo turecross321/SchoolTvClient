@@ -52,13 +52,4 @@ export class BreaksPane {
     return this.getBreakMax(b) - this.getDaysElapsed();
   }
 
-  /*
-  getDenominator(b: SchoolBreakResponse) {
-    const daysLeft = this.getDaysLeft(b);
-    if (daysLeft > 7)
-      return 7;
-
-    return 1;
-  }*/
-
 }
